@@ -48,9 +48,9 @@ mqtt:
   sensor:
     - state_topic: "energy/solar"
       unique_id: "growatt_wr_total_production"
-      name: "Growatt.TotalGenerateEnergy"
+      name: "Growatt.TotalGeneratedEnergy"
       unit_of_measurement: "kWh"
-      value_template: "{{ float(value_json.TotalGenerateEnergy) | round(1) }}"
+      value_template: "{{ float(value_json.TotalGeneratedEnergy) | round(1) }}"
       device_class: energy
       state_class: total_increasing
       json_attributes_topic: "energy/solar"
