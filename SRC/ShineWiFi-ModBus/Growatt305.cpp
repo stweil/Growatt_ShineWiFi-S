@@ -1,6 +1,9 @@
 #include "Arduino.h"
 
 #include "Growatt.h"
+
+#if GROWATT_MODBUS_VERSION == 305
+
 #include "Growatt305.h"
 
 void init_growatt305(sProtocolDefinition_t& Protocol, Growatt& inverter) {
@@ -46,3 +49,5 @@ void init_growatt305(sProtocolDefinition_t& Protocol, Growatt& inverter) {
   Protocol.HoldingRegisterCount = 0;
   Protocol.HoldingFragmentCount = 0;
 }
+
+#endif  /* GROWATT_MODBUS_VERSION == 305 */
