@@ -1,6 +1,9 @@
 #include "Arduino.h"
 
 #include "Growatt.h"
+
+#if GROWATT_MODBUS_VERSION == 120
+
 #include "Growatt120.h"
 
 // Supported inverters:
@@ -335,3 +338,5 @@ void init_growatt120(sProtocolDefinition_t& Protocol, Growatt& inverter) {
       3, 0, SIZE_16BIT, F("ActivePowerRate"), 1, 1, PERCENTAGE, true, false};
   // FRAGMENT 1: END
 }
+
+#endif  /* GROWATT_MODBUS_VERSION == 120 */
