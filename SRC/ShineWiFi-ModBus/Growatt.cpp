@@ -663,15 +663,21 @@ void Growatt::CreateMetrics(String& metrics, const String& MacAddress,
     labels = "mac=\"" + MacAddress + "\",name=\"" + Hostname + "\"";
   }
 #if SIMULATE_INVERTER != 1
-  for (int i = 0; i < _Protocol.InputRegisterCount; i++)
+  for (int i = 0; i < _Protocol.InputRegisterCount; i++) {
+    if (String(_Protocol.InputRegisters[i].name).isEmpty())
+      continue;
     metricsAddValue(_Protocol.InputRegisters[i].name,
                     getRegValue(&_Protocol.InputRegisters[i]),
                     _Protocol.InputRegisters[i].resolution, metrics, labels);
+  }
 
-  for (int i = 0; i < _Protocol.HoldingRegisterCount; i++)
+  for (int i = 0; i < _Protocol.HoldingRegisterCount; i++) {
+    if (String(_Protocol.HoldingRegisters[i].name).isEmpty())
+      continue;
     metricsAddValue(_Protocol.HoldingRegisters[i].name,
                     getRegValue(&_Protocol.HoldingRegisters[i]),
                     _Protocol.HoldingRegisters[i].resolution, metrics, labels);
+  }
 
 #else
 #warning simulating the inverter
